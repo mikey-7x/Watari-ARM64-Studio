@@ -36,10 +36,9 @@ Watari has evolved. The legacy `v1.0.0` utilized a massive Python/Buildozer wrap
 Do not extract the tarball manually. Simply run the universal installer script in your Linux environment:
 
 ```bash
-wget [https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/main/install.sh](https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/main/install.sh)
-chmod +x install.sh
-./install.sh
-
+wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari.sh
+chmod +x watari.sh
+./watari.sh
 ```
 *Restart your terminal or run source ~/.bashrc after installation.*
 ## 🛠️ The Watari Command Suite
