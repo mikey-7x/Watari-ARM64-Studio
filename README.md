@@ -105,7 +105,7 @@ CLI Commands
 
 ​Watari integrates directly into your bash path, providing three core commands:
 
--​watari
+​watari
 
 ​Displays the master menu and command reference.
 
