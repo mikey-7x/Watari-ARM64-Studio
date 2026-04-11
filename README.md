@@ -95,8 +95,9 @@ Build complex, industry-level Android applications entirely from the terminal.
 To install the Watari Pro engine and the official Android Command-Line Tools, run the master installer in your Ubuntu/Debian terminal:
 
 ```bash
-wget [https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/main/install-watari.sh](https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/main/install-watari.sh)
-bash install-watari.sh
+wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari_pro_v3.sh
+chmod +x watari_pro_v3.sh
+./watari_pro_v3.ah
 source ~/.bashrc
 ```
 
