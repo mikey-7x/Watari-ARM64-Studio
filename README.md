@@ -78,7 +78,7 @@ When you trigger watari-build, the script seamlessly executes the Google Android
  5. **apksigner:** Cryptographically seals the package with an RSA Keystore.
 
 ---
-# [3]Watari ARM64 Studio (Pro v3.0) ⚡
+# ⚡[3]Watari ARM64 Studio (Pro v3.0)
 
 Watari Pro is the ultimate command-line Android compilation engine designed specifically for Linux ARM64 environments (like Termux and Ubuntu PRoot). It strips away the heavy GUI overhead of Android Studio while retaining the full power of the official Android Gradle Plugin (AGP) and Kotlin.
 
