@@ -239,7 +239,7 @@ Once the terminal outputs [✔] APP FORGED!, your compiled application is ready.
 cp build/app-debug.apk /storage/emulated/0/Download/HelloWatari.apk
 ```
 Navigate to your Downloads folder, tap the APK, and test your new app!
-```
+
 ---
 
 ## 👨‍💻 Author & Authority
@@ -264,3 +264,5 @@ By accessing, downloading, or modifying this repository, you legally agree to th
 If you are a business, enterprise, or individual wishing to utilize Watari-ARM64-Studio for profit-generating or commercial purposes, you are legally required to obtain explicit, written permission and a separate commercial license from the author prior to any use.
 
 To negotiate a commercial license, please reach out directly to **@mikey-7x** by opening a dedicated issue or discussion thread in this repository.
+
+---
