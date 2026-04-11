@@ -145,7 +145,8 @@ watari-build --offline
 
 Here is a complete start-to-finish example of how to forge an interactive Android app using Watari Pro, right from your terminal.
 
-### Step 1: Scaffold the Project
+Step 1: Scaffold the Project
+
 Create a new project workspace. Watari will automatically generate the Gradle configuration, Manifest, and Kotlin architecture.
 
 ```bash
