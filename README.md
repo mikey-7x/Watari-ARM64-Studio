@@ -132,6 +132,9 @@ watari-build --offline
 
 # Architecture Notes
 
-​Watari Pro v3.0 establishes the environment in ~/.watari_forge/.
+​Watari Pro v3.0 establishes the environment in 
+~/.watari_forge/.
+
 ​SDK Path: ~/.watari_forge/android_sdk
+
 ​Binaries: ~/.watari_forge/bin
