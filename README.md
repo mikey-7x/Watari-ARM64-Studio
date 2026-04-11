@@ -232,6 +232,11 @@ Trigger the compilation engine. If this is your first build, Gradle will downloa
 ```bash
 watari-build
 ```
+or
+```
+~/.<name_of_project>/bin/watari-build
+```
+
 Step 5: Install
 
 Once the terminal outputs [✔] APP FORGED!, your compiled application is ready. You can move it to your device's main storage to install it:
