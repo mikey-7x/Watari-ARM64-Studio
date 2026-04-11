@@ -138,3 +138,29 @@ watari-build --offline
 ​SDK Path: ~/.watari_forge/android_sdk
 
 ​Binaries: ~/.watari_forge/bin
+
+---
+---
+
+## 👨‍💻 Author & Authority
+
+**Watari-ARM64-Studio** is independently designed, developed, and maintained by **Mikey** ([@mikey-7x](https://github.com/mikey-7x)). 
+
+All core scripts, build architectures, and custom CLI compilation engines within this repository are the intellectual property of the author. 
+
+## ⚖️ License & Usage Terms
+
+This project is protected under a strict **Source-Available / Non-Commercial License**. 
+
+By accessing, downloading, or modifying this repository, you legally agree to the following conditions:
+
+* **✅ Permitted (Personal & Educational Use):** You are free to download, modify, and use this engine for personal development, educational learning, and internal non-profit projects.
+
+* **✅ Required (Attribution):** Any public showcase, fork, or non-commercial redistribution of this tool (or modified versions of it) must clearly credit **Mikey (mikey-7x)** and link back to this original repository.
+* **❌ Strictly Prohibited (No Commercial Use):** You may **NOT** use this software, its source code, or its compiled binaries for any commercial purpose, monetary gain, or profit-generating activity. This includes, but is not limited to: selling the software, integrating it into a commercial product, or offering its capabilities as a paid service.
+
+### 💼 Commercial Permissions
+
+If you are a business, enterprise, or individual wishing to utilize Watari-ARM64-Studio for profit-generating or commercial purposes, you are legally required to obtain explicit, written permission and a separate commercial license from the author prior to any use.
+
+To negotiate a commercial license, please reach out directly to **@mikey-7x** by opening a dedicated issue or discussion thread in this repository.
