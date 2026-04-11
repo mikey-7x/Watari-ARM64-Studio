@@ -140,6 +140,105 @@ watari-build --offline
 ​Binaries: ~/.watari_forge/bin
 
 ---
+
+## 🚀 Quick Start Example: Building Your First App
+
+Here is a complete start-to-finish example of how to forge an interactive Android app using Watari Pro, right from your terminal.
+
+### Step 1: Scaffold the Project
+Create a new project workspace. Watari will automatically generate the Gradle configuration, Manifest, and Kotlin architecture.
+
+```bash
+watari-init HelloWatari
+cd HelloWatari
+
+```
+Step 2: Edit the UI Layout
+
+Open the layout file using your preferred terminal editor (like nano or vim).
+```bash
+nano app/src/main/res/layout/activity_main.xml
+
+```
+Paste in a simple layout with a TextView and a Button:
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="[http://schemas.android.com/apk/res/android](http://schemas.android.com/apk/res/android)"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#121212">
+
+    <TextView
+        android:id="@+id/tvGreeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="System Standby"
+        android:textColor="#00E5FF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/btnEngage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Engage Watari"
+        android:backgroundTint="#00E5FF"
+        android:textColor="#000000"/>
+</LinearLayout>
+
+```
+*(Save and exit)*
+
+Step 3: Add the Kotlin Logic
+
+Next, open the main Kotlin file to add interactive logic to the button.
+```bash
+nano app/src/main/java/com/watari/hellowatari/MainActivity.kt
+
+```
+Paste this Kotlin code:
+```kotlin
+package com.watari.hellowatari
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val tvGreeting = findViewById<TextView>(R.id.tvGreeting)
+        val btnEngage = findViewById<Button>(R.id.btnEngage)
+
+        btnEngage.setOnClickListener {
+            tvGreeting.text = "Watari Engine Online! ⚡"
+        }
+    }
+}
+
+```
+*(Save and exit)*
+
+Step 4: Forge the APK!
+
+Trigger the compilation engine. If this is your first build, Gradle will download the required AndroidX libraries.
+```bash
+watari-build
+```
+Step 5: Install
+
+Once the terminal outputs [✔] APP FORGED!, your compiled application is ready. You can move it to your device's main storage to install it:
+```bash
+cp build/app-debug.apk /storage/emulated/0/Download/HelloWatari.apk
+```
+Navigate to your Downloads folder, tap the APK, and test your new app!
+```
 ---
 
 ## 👨‍💻 Author & Authority
