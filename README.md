@@ -76,6 +76,61 @@ When you trigger watari-build, the script seamlessly executes the Google Android
  3. **d8 (Dalvik Executable):** Desugars and translates Java bytecode into heavily optimized classes.dex machine code.
  4. **zipalign:** Modifies byte offsets to exactly 4-byte boundaries (and Page Aligns) for instant RAM reads on mobile.
  5. **apksigner:** Cryptographically seals the package with an RSA Keystore.
+
+---
+# [3]Watari ARM64 Studio (Pro v3.0) ⚡
+
+Watari Pro is the ultimate command-line Android compilation engine designed specifically for Linux ARM64 environments (like Termux and Ubuntu PRoot). It strips away the heavy GUI overhead of Android Studio while retaining the full power of the official Android Gradle Plugin (AGP) and Kotlin.
+
+Build complex, industry-level Android applications entirely from the terminal. 
+
+## Features
+* **Zero IDE Overhead:** Compile heavy Kotlin apps on mobile devices and SBCs without needing a desktop environment.
+* **Full Kotlin & AndroidX Support:** Natively scaffolds modern Android project architectures out-of-the-box.
+* **Auto-Configuration:** Handles `local.properties` SDK routing, JVM target alignments, and Android SDK licensing automatically.
+* **Strict Offline Mode:** Once dependencies are cached, you can compile applications entirely offline without an internet connection.
+
+## Installation 
+
+To install the Watari Pro engine and the official Android Command-Line Tools, run the master installer in your Ubuntu/Debian terminal:
+
+```bash
+wget [https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/main/install-watari.sh](https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/main/install-watari.sh)
+bash install-watari.sh
+source ~/.bashrc
 ```
 
+CLI Commands
+
+​Watari integrates directly into your bash path, providing three core commands:
+
+​watari
+
+​Displays the master menu and command reference.
+
+​watari-init <ProjectName>
+
+​Scaffolds a completely blank, correctly configured modern Kotlin/Gradle project in the current directory.
+
 ```
+watari-init SmartHomeApp
+cd SmartHomeApp
+```
+watari-build
+
+​Engages the Gradle daemon to compile your project. The first run requires an internet connection to download and cache external dependencies (like AndroidX or Firebase libraries).
+```
+watari-build
+```
+Compiled APKs are automatically routed to build/app-debug.apk.
+
+
+watari-build --offline
+
+​Forces the Gradle daemon to execute without pinging remote repositories, using only your locally cached toolchains and dependencies.
+
+# Architecture Notes
+
+​Watari Pro v3.0 establishes the environment in ~/.watari_forge/.
+​SDK Path: ~/.watari_forge/android_sdk
+​Binaries: ~/.watari_forge/bin
