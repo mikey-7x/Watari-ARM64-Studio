@@ -8,137 +8,91 @@
 
 **Framework:** Python 3, Kivy, Buildozer, Python-for-Android (p4a)
 
-The **Watari Legacy Engine** is a fully offline, heavily customized Buildozer compilation toolchain. It is uniquely engineered to run natively on ARM64 processors. While standard Buildozer environments strictly demand an Intel/AMD x86_64 PC, this payload features pre-compiled NDK binaries and patched aapt/aidl tools specifically optimized for modern ARM64 silicon, functioning flawlessly on devices like the OnePlus 13R, as well as standard Linux distributions (Ubuntu/Debian PRoot).
+The **Watari Legacy Engine** is an automated, offline Buildozer cross-compilation toolchain. It is uniquely engineered to run natively on ARM64 processors (such as the OnePlus 13R or ARM-based Linux boards) bypassing the traditional requirement for an Intel/AMD x86_64 PC.
+​This method uses the watari_legacy.sh script to automatically fetch the custom .tar.xz payload, resolve all Ubuntu dependencies, patch the PRoot OS blindspots, and establish a ready-to-use virtual studio.
 
 ### ✨ Features
  * **Bypasses x86 PC Requirements:** Compiles Python code to Android .apk directly on an Android smartphone or ARM64 Linux board.
  * **Pre-Compiled Offline Wheelhouse:** Contains custom .whl files for instant dependency resolution without breaking on modern Python versions.
  * **Custom Omni-Symlinks:** Automatically routes hardcoded x86 paths to the native aarch64 compilers.
  * **Hardware-Ready:** Perfect for Python-based hardware telemetry apps (e.g., PySerial ESP32 interfaces, OpenCV camera modules).
- * 
-## 📦Installation Instructions
-The entire architecture is packaged inside a single 354MB highly-compressed payload. To install it, run the following sequence in your Ubuntu/Debian terminal:
 
-**Step 1: Install System Dependencies**
+## 📦Installation & Configuration
+To deploy the Legacy Engine on your Ubuntu/Debian environment, download and execute the automated setup script directly from this repository:
+
+**Step 1: Download the Installer**
 ```bash
-sudo apt-get update -y
-sudo apt-get install -y wget tar python3 python3-pip python3-venv git unzip zip build-essential openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses-dev cmake libffi-dev libssl-dev
+wget -O watari_legacy.sh https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/main/watari_legacy.sh
 
 ```
-
-**Step 2: Download & Extract the Master Payload**
+*(Note: If your script is on a different branch, replace main with your branch name).*
+**Step 2: Grant Execution Rights & Run**
 ```bash
-# Download the v1.0.0 tarball
-wget --show-progress -O watari-arm64-toolchain.tar.xz "https://github.com/mikey-7x/Watari-ARM64-Studio/releases/download/v1.0.0/watari-arm64-toolchain.tar.xz"
-
-# Extract to the core directory
-mkdir -p ~/.watari_core
-tar -xf watari-arm64-toolchain.tar.xz -C ~/.watari_core --strip-components=1
+chmod +x watari_legacy.sh
+./watari_legacy.sh
 
 ```
-*(Note: To fully initialize the environment aliases and apply the PRoot compiler bypasses, it is highly recommended to run the setup_watari.sh script provided in the repository after downloading the payload).*
-
-## ⚙️Execution & Command Suite
-Once installed and activated, the Legacy Engine uses an isolated virtual environment to prevent interfering with your system Python.
-Launch the studio by typing:
+**Step 3: Reload Your Terminal**
+Once the installation finishes, reload your environment variables to activate the custom studio commands:
 ```bash
-watari
+source ~/.bashrc
 
 ```
-This drops you into the ~/watari_project directory with the (.watari_env) active. You now have access to the following global commands:
- * watari-build : Compiles the current main.py into a Debug APK.
- * watari-release : Compiles the project into a Release-ready AAB/APK.
- * watari-clean : Purges the Buildozer cache to fix ghost errors.
- * watari-exit : Safely deactivates the virtual environment.
- * 
-## 🚀Example: Creating a Hardware Telemetry App
-Here is a complete example of creating a sleek, Python-based application using the Watari Legacy Engine.
+## ⚙️Creating Your First Application
+The Watari Studio operates in an isolated virtual environment. Follow this practical example to initialize the studio and compile a clean, minimalist UI.
 
-**1. Initialize the Studio**
+### Step 1: Initialize the Studio
+Launch the environment by typing:
 ```bash
 watari
 
 ```
-**2. Write the Application Logic**
-Inside the watari_project folder, create a file named main.py and paste the following Kivy code. This creates a responsive, hardware-style dashboard.
+This command automatically creates your ~/watari_project directory, activates the Python virtual environment, and injects the perfected buildozer.spec configuration file.
+
+### Step 2: Write the Application Logic
+Inside your watari_project folder, create a file named main.py and paste the following Kivy code. This generates a clean, highly visible white-themed interface for practical hardware telemetry or testing.
 ```python
 # main.py
 from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
 from kivy.uix.label import Label
-from kivy.graphics import Color, Rectangle
+from kivy.core.window import Window
 from kivy.utils import get_color_from_hex
 
-class WatariDashboard(App):
+class WatariLegacyApp(App):
     def build(self):
-        # Main Layout
-        layout = BoxLayout(orientation='vertical', padding=50, spacing=30)
+        # Clean, high-contrast white interface 
+        Window.clearcolor = get_color_from_hex("#FFFFFF")
         
-        # Background Color
-        with layout.canvas.before:
-            Color(rgb=get_color_from_hex("#0F172A"))
-            self.bg = Rectangle(pos=layout.pos, size=layout.size)
-        layout.bind(pos=self.update_bg, size=self.update_bg)
-
-        # Header
-        header = Label(
-            text="WATARI FORGE | mikey-7x", 
-            color=get_color_from_hex("#38BDF8"),
-            font_size='24sp',
-            size_hint=(1, 0.2),
-            bold=True
-        )
-        
-        # Telemetry Display
-        self.status = Label(
-            text="System Offline\nAwaiting Telemetry...", 
-            color=get_color_from_hex("#94A3B8"),
-            font_size='18sp',
+        return Label(
+            text="[b]WATARI LEGACY ENGINE[/b]\n\nSystem Online.\nARM64 Compiler Active.",
+            markup=True,
+            color=get_color_from_hex("#000000"), # Black text for high visibility
+            font_size='22sp',
             halign="center"
         )
-        
-        # Hardware Trigger Button
-        btn_scan = Button(
-            text="INITIALIZE SCAN",
-            background_normal='',
-            background_color=get_color_from_hex("#10B981"),
-            size_hint=(1, 0.2),
-            bold=True
-        )
-        btn_scan.bind(on_press=self.run_scan)
-
-        layout.add_widget(header)
-        layout.add_widget(self.status)
-        layout.add_widget(btn_scan)
-        return layout
-
-    def update_bg(self, instance, value):
-        self.bg.pos = instance.pos
-        self.bg.size = instance.size
-
-    def run_scan(self, instance):
-        self.status.text = "System Online\nARM64 Processor Detected\nCompiler: Active"
-        self.status.color = get_color_from_hex("#FFFFFF")
 
 if __name__ == '__main__':
-    WatariDashboard().run()
+    WatariLegacyApp().run()
 
 ```
-**3. Configure the Spec File**
-Ensure your buildozer.spec file has the correct requirements. The setup script auto-generates this, but verify this line exists:
-```ini
-requirements = python3,kivy
+### Step 3: Configure the Build
+Ensure your project is configured to use Kivy. Run this quick command to verify the requirements in your buildozer.spec:
+```bash
+sed -i 's/^requirements = .*/requirements = python3,kivy/' buildozer.spec
 
 ```
-**4. Forge the APK**
-Command the engine to compile the Python bytecode into Android Dalvik executables:
+### Step 4: Forge the APK
+Command the engine to compile your Python bytecode into an Android Dalvik executable:
 ```bash
 yes | watari-build
 
 ```
-**5. Locate Your App**
-Once the C++ compilation finishes, your finished application will be located in the ~/watari_project/bin/ folder. Transfer the .apk to your file manager and install it!
+> ### ⚠️ **CRITICAL NOTIFICATION: FIRST BUILD DURATION**
+> The **very first time** you run watari-build, the compilation process will take **30 to 45+ minutes**.
+> Buildozer must unpack the massive Android NDK, compile the core Python headers in C++, and build the machine code for the Android APK from scratch. **Do not close your terminal.** Once this initial baseline is cached, all subsequent builds will complete in just a few minutes.
+> 
+### Step 5: Locate the Executable
+Once the terminal displays # Android packaging done!, your finished application will be located in the ~/watari_project/bin/ directory. Transfer the generated .apk to your file manager and install it on your device.
 
 # 🚀[2]Watari Studio (Native ARM64 Android Forge)
 
