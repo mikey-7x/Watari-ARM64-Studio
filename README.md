@@ -1,24 +1,31 @@
 # Watari-ARM64-Studio
-Watari-ARM64-Studio
 
 # 🛠️[1]Watari Legacy Engine (Python / Buildozer)
+
 **Version:** v1.0.0 (Legacy)
+
 **Architecture:** ARM64 / aarch64
+
 **Framework:** Python 3, Kivy, Buildozer, Python-for-Android (p4a)
+
 The **Watari Legacy Engine** is a fully offline, heavily customized Buildozer compilation toolchain. It is uniquely engineered to run natively on ARM64 processors. While standard Buildozer environments strictly demand an Intel/AMD x86_64 PC, this payload features pre-compiled NDK binaries and patched aapt/aidl tools specifically optimized for modern ARM64 silicon, functioning flawlessly on devices like the OnePlus 13R, as well as standard Linux distributions (Ubuntu/Debian PRoot).
+
 ### ✨ Features
  * **Bypasses x86 PC Requirements:** Compiles Python code to Android .apk directly on an Android smartphone or ARM64 Linux board.
  * **Pre-Compiled Offline Wheelhouse:** Contains custom .whl files for instant dependency resolution without breaking on modern Python versions.
  * **Custom Omni-Symlinks:** Automatically routes hardcoded x86 paths to the native aarch64 compilers.
  * **Hardware-Ready:** Perfect for Python-based hardware telemetry apps (e.g., PySerial ESP32 interfaces, OpenCV camera modules).
-## 📦 1. Installation Instructions
+ * 
+## 📦Installation Instructions
 The entire architecture is packaged inside a single 354MB highly-compressed payload. To install it, run the following sequence in your Ubuntu/Debian terminal:
+
 **Step 1: Install System Dependencies**
 ```bash
 sudo apt-get update -y
 sudo apt-get install -y wget tar python3 python3-pip python3-venv git unzip zip build-essential openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses-dev cmake libffi-dev libssl-dev
 
 ```
+
 **Step 2: Download & Extract the Master Payload**
 ```bash
 # Download the v1.0.0 tarball
@@ -30,7 +37,8 @@ tar -xf watari-arm64-toolchain.tar.xz -C ~/.watari_core --strip-components=1
 
 ```
 *(Note: To fully initialize the environment aliases and apply the PRoot compiler bypasses, it is highly recommended to run the setup_watari.sh script provided in the repository after downloading the payload).*
-## ⚙️ 2. Execution & Command Suite
+
+## ⚙️Execution & Command Suite
 Once installed and activated, the Legacy Engine uses an isolated virtual environment to prevent interfering with your system Python.
 Launch the studio by typing:
 ```bash
@@ -42,8 +50,10 @@ This drops you into the ~/watari_project directory with the (.watari_env) active
  * watari-release : Compiles the project into a Release-ready AAB/APK.
  * watari-clean : Purges the Buildozer cache to fix ghost errors.
  * watari-exit : Safely deactivates the virtual environment.
-## 🚀 3. Example: Creating a Hardware Telemetry App
+ * 
+## 🚀Example: Creating a Hardware Telemetry App
 Here is a complete example of creating a sleek, Python-based application using the Watari Legacy Engine.
+
 **1. Initialize the Studio**
 ```bash
 watari
@@ -129,11 +139,6 @@ yes | watari-build
 ```
 **5. Locate Your App**
 Once the C++ compilation finishes, your finished application will be located in the ~/watari_project/bin/ folder. Transfer the .apk to your file manager and install it!
-
-
-
-
-
 
 # 🚀[2]Watari Studio (Native ARM64 Android Forge)
 
