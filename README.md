@@ -26,6 +26,7 @@ wget -O watari_legacy.sh https://raw.githubusercontent.com/mikey-7x/Watari-ARM64
 
 ```
 *(Note: If your script is on a different branch, replace main with your branch name).*
+
 **Step 2: Grant Execution Rights & Run**
 ```bash
 chmod +x watari_legacy.sh
@@ -33,6 +34,7 @@ chmod +x watari_legacy.sh
 
 ```
 **Step 3: Reload Your Terminal**
+
 Once the installation finishes, reload your environment variables to activate the custom studio commands:
 ```bash
 source ~/.bashrc
