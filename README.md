@@ -1,4 +1,6 @@
 ![watari poster](watari.png)
+>do not use **[1]Watari Legacy Engine (Python / Buildozer** because it's upgraded version **[2] & [3]** is available which is highly advanced and optimise where version **[2]** is faster to create android app within ~3 seconds only ans version **[3]** is a includes actually all advance facilities including high graphics & layout designing ans all android's hardware permissions 
+>version **[1]** will take initially 30 minutes+ time and requires many packages & disable the many configurations in proot-environment
 
 # 🛠️[1]Watari Legacy Engine (Python / Buildozer)
 
