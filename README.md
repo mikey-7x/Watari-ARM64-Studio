@@ -1,4 +1,4 @@
-# Watari-ARM64-Studio
+![watari poster](watari.png)
 
 # 🛠️[1]Watari Legacy Engine (Python / Buildozer)
 
