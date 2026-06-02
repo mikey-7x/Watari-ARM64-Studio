@@ -185,8 +185,6 @@ Build complex, industry-level Android applications entirely from the terminal.
 * **Strict Offline Mode:** Once dependencies are cached, you can compile applications entirely offline without an internet connection.
 
 ## Installation 
-(Please ensure Java 17 and Gradle are installed if below given script gives error)
-
 To install the Watari Pro engine and the official Android Command-Line Tools, run the master installer in your Ubuntu/Debian terminal:
 
 ```bash
@@ -195,34 +193,7 @@ chmod +x watari_pro_v3.sh
 ./watari_pro_v3.sh
 source ~/.bashrc
 ```
-for archlinux:
-```
-# 1. Update pacman databases and install the available packages (skip gradle here)
-sudo pacman -Sy --needed --noconfirm jdk17-openjdk unzip tk
-
-# 2. Download and install the official Gradle 8.7 binary manually
-wget https://services.gradle.org/distributions/gradle-8.7-bin.zip
-sudo mkdir -p /opt/gradle
-sudo unzip -q -d /opt/gradle gradle-8.7-bin.zip
-rm gradle-8.7-bin.zip
-
-# 3. Set up Gradle and Android SDK Environment Variables
-echo 'export PATH=/opt/gradle/gradle-8.7/bin:$PATH' >> ~/.bashrc
-echo 'export ANDROID_HOME=$HOME/android-sdk' >> ~/.bashrc
-echo 'export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools' >> ~/.bashrc
-
-# 4. Reload your environment
-source ~/.bashrc
-
-# 5. Verify Gradle is now working!
-gradle -v
-
-wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari_pro_v3.sh
-chmod +x watari_pro_v3.sh
-./watari_pro_v3.sh
-source ~/.bashrc
-```
-*(You should now see the Gradle version information print to your screen successfully at in installation process).*
+(this script/command not work in archlinux!) 
 
 CLI Commands
 
