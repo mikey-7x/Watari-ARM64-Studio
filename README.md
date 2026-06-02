@@ -216,8 +216,13 @@ source ~/.bashrc
 
 # 5. Verify Gradle is now working!
 gradle -v
+
+wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari_pro_v3.sh
+chmod +x watari_pro_v3.sh
+./watari_pro_v3.sh
+source ~/.bashrc
 ```
-*(You should now see the Gradle version information print to your screen successfully).*
+*(You should now see the Gradle version information print to your screen successfully at in installation process).*
 
 CLI Commands
 
