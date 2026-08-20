@@ -341,6 +341,54 @@ cp build/app-debug.apk /storage/emulated/0/Download/HelloWatari.apk
 ```
 Navigate to your Downloads folder, tap the APK, and test your new app!
 
+
+
+
+🎷Here is a detailed breakdown of the upgrades, architectural improvements, and new features introduced in Watari Native Forge PRO v3.1 compared to the original v3.0 in your repository.
+
+1. Universal Multi-Distribution & Native Termux Support
+
+ * In v3.0: The script was hardcoded to check /etc/os-release specifically for ubuntu|debian and relied entirely on apt-get. Running it on any other Linux distribution (like Arch Linux, Void Linux, Fedora, or native Termux) resulted in skipped dependencies and immediate failure.
+ * In v3.1: It features an intelligent Package Manager Detection Engine that dynamically identifies the running environment and applies the correct native package manager:
+   * Native Termux: Uses pkg
+   * Arch Linux / Manjaro: Uses pacman (with proper --noconfirm automation and conflict resolution)
+   * Void Linux: Uses xbps-install
+   * Debian / Ubuntu: Uses apt-get
+   * Fedora / RHEL: Uses dnf
+   * openSUSE: Uses zypper
+
+2. Standalone Portable Gradle Engine (Distro-Agnostic)
+
+ * In v3.0: Relied on distro package managers to install gradle (apt-get install gradle). In many minimal ARM64 PRoot roots and distros like Arch Linux ARM, gradle is either missing from official core/extra repositories, outdated, or strictly relegated to the AUR.
+ * In v3.1: Completely decouples Gradle from the operating system's package repository. The script now automatically fetches, extracts, and configures the official portable standalone Gradle 8.7 Binary directly into $WATARI_HOME/gradle/latest/. This guarantees:
+   * Zero repository dependency issues across all distros.
+   * Uniform Gradle version parity and build consistency regardless of the host environment.
+
+3. Pre-Flight Network Connectivity Diagnostics
+ * In v3.0: The installer would immediately start mutating local directories and wiping existing configurations (rm -rf "$WATARI_HOME") before confirming whether an internet connection was available to download SDK components.
+ * In v3.1: Adds an upfront, silent pre-flight network connectivity probe (wget -q --spider). If offline, it aborts cleanly before altering or deleting any local files.
+
+4. SIGPIPE & Exit-on-Error Crash Prevention
+ * In v3.0: The license acceptance command (yes | $CMDLINE_TOOLS/sdkmanager --licenses) frequently threw a SIGPIPE / broken-pipe error once sdkmanager finished processing standard input. Under set -e, this caused bash to abort the entire script prematurely before building the CLI binaries.
+ * In v3.1: Uses scoped error isolation (set +e / set -e) around the license agreement pipeline to safely handle process termination without triggering unexpected script crashes.
+
+5. Pre-Requisite Verification & Fail-Safes
+ * In v3.1: Added an explicit validation check for the Java 17 runtime environment (command -v java) right after the package manager step. If a package manager fails silently or misses the JDK, the script halts with a clear diagnostic message instead of throwing cryptic downstream Java errors during SDK initialization.
+
+6. Clean Terminal Telemetry & Shell Path Injection
+ * Progress Optimization: Large binary downloads (Command-line Tools and Gradle) now utilize quiet stream flags with inline progress formatting (-q --show-progress), preventing thousands of raw log lines from flooding PRoot/Termux terminals.
+ * Integrated PATH Resolution: Automatically appends the standalone Gradle binary path ($HOME/.watari_forge/gradle/latest/bin) directly alongside the Android SDK platform tools and Watari binaries into both .bashrc and .zshrc.
+Comparison Overview
+
+| Feature | Watari Pro v3.0 | Watari Pro v3.1 |
+|---|---|---|
+| Linux Distro Support | Debian / Ubuntu only | Arch, Void, Debian/Ubuntu, Fedora, openSUSE, Termux |
+| Gradle Source | OS Package Manager (breaks on Arch/Termux) | Embedded Portable Standalone (v8.7) |
+| Network Check | ❌ None | ✔ Pre-flight network validation |
+| License Pipe Handling | ❌ Prone to SIGPIPE crash under set -e | ✔ Safe scoped error isolation |
+| Java Environment Check | ❌ None | ✔ Pre-SDK runtime validation |
+| Terminal Output | Raw verbose logs | Streamlined single-line progress bars |
+
 ---
 
 ## 👨‍💻 Author & Authority
