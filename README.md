@@ -341,10 +341,16 @@ cp build/app-debug.apk /storage/emulated/0/Download/HelloWatari.apk
 ```
 Navigate to your Downloads folder, tap the APK, and test your new app!
 
+# 🪅 Watari ARM64 Studio (pro v3.1)
+Working is similar as *pro 3.0*
+```
+wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari_pro_v3_1.sh
+```
+```
+source ~/.bashrc
+```
 
-
-
-🎷Here is a detailed breakdown of the upgrades, architectural improvements, and new features introduced in Watari Native Forge PRO v3.1 compared to the original v3.0 in your repository.
+✅ Here is a detailed breakdown of the upgrades, architectural improvements, and new features introduced in Watari Native Forge PRO v3.1 compared to the original v3.0 in your repository.
 
 1. Universal Multi-Distribution & Native Termux Support
 
@@ -378,7 +384,8 @@ Navigate to your Downloads folder, tap the APK, and test your new app!
 6. Clean Terminal Telemetry & Shell Path Injection
  * Progress Optimization: Large binary downloads (Command-line Tools and Gradle) now utilize quiet stream flags with inline progress formatting (-q --show-progress), preventing thousands of raw log lines from flooding PRoot/Termux terminals.
  * Integrated PATH Resolution: Automatically appends the standalone Gradle binary path ($HOME/.watari_forge/gradle/latest/bin) directly alongside the Android SDK platform tools and Watari binaries into both .bashrc and .zshrc.
-Comparison Overview
+
+# Comparison Overview
 
 | Feature | Watari Pro v3.0 | Watari Pro v3.1 |
 |---|---|---|
