@@ -197,6 +197,48 @@ source ~/.bashrc
 ```
 (this script/command not work in archlinux!) 
 
+**for archlinux:**
+```
+# 1. Update system databases and install base dependencies
+sudo pacman -Syu --noconfirm jdk17-openjdk wget curl unzip zip git tree
+
+# 2. Setup a clean temporary build environment for Android tools
+mkdir -p /tmp/watari_tools && cd /tmp/watari_tools
+
+# 3. Fetch native AArch64 aapt/zipalign and Google's official apksigner.jar
+wget -q https://github.com/lzhiyong/android-sdk-tools/releases/download/35.0.2/android-sdk-tools-static-aarch64.zip
+wget -q https://dl.google.com/android/repository/build-tools_r34-linux.zip -O google-build-tools.zip
+
+# 4. Extract binaries directly
+unzip -q android-sdk-tools-static-aarch64.zip -d arm64_extracted
+unzip -q google-build-tools.zip -d google_extracted
+
+# 5. Move binaries and jar to /usr/local/bin
+find arm64_extracted -type f -name "aapt" -exec sudo mv {} /usr/local/bin/ \;
+find arm64_extracted -type f -name "zipalign" -exec sudo mv {} /usr/local/bin/ \;
+find google_extracted -type f -name "apksigner.jar" -exec sudo mv {} /usr/local/bin/ \;
+
+# 6. Create the apksigner wrapper script in /usr/local/bin
+sudo tee /usr/local/bin/apksigner > /dev/null << 'EOF'
+#!/bin/bash
+java -jar /usr/local/bin/apksigner.jar "$@"
+EOF
+
+# 7. Apply execute permissions to the toolchain
+sudo chmod +x /usr/local/bin/aapt /usr/local/bin/zipalign /usr/local/bin/apksigner
+
+# 8. Clean up temporary setup files
+cd ~ && rm -rf /tmp/watari_tools
+
+# 9. Download, configure, and execute Watari Pro v3
+wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari_pro_v3.sh
+chmod +x watari_pro_v3.sh
+./watari_pro_v3.sh
+
+# 10. Reload bash profile
+source ~/.bashrc
+```
+
 CLI Commands
 
 ​Watari integrates directly into your bash path, providing three core commands:
