@@ -387,6 +387,7 @@ Navigate to your Downloads folder, tap the APK, and test your new app!
 Working is similar as *pro 3.0*
 ```
 wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari_pro_v3_1.sh
+./watari_pro_v3_1.sh
 ```
 ```
 source ~/.bashrc
