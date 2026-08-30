@@ -390,8 +390,17 @@ wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/m
 chmod +x watari_pro_v3_1.sh
 ./watari_pro_v3_1.sh
 ```
+To apply the environment changes and verify the installation:
 ```
+# 1. Reload your shell environment
 source ~/.bashrc
+
+# 2. Check the Watari CLI menu
+watari
+
+# 3. Verify the native AAPT2 binary location and execution
+$HOME/.watari_forge/bin/aapt2 version
+
 ```
 
 ✅ Here is a detailed breakdown of the upgrades, architectural improvements, and new features introduced in Watari Native Forge PRO v3.1 compared to the original v3.0 in your repository.
