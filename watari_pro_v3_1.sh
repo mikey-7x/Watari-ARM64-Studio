@@ -172,7 +172,7 @@ android.useAndroidX=true
 android.enableJetifier=true
 android.suppressUnsupportedCompileSdk=34
 org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
-android.aapt2FromMavenOverride=$WATARI_BIN/aapt2
+android.aapt2FromMavenOverride=$HOME/.watari_forge/bin/aapt2
 INNER_EOF
 
 cat << 'INNER_EOF' > settings.gradle.kts
@@ -325,6 +325,20 @@ for rc_file in "$HOME/.bashrc" "$HOME/.zshrc"; do
         fi
     fi
 done
+
+# 9. Create Global Executable Links
+echo -e "${YELLOW}[*] Step 8: Creating Global System Links...${RESET}"
+if [ -n "$PREFIX" ] && [ -d "$PREFIX/bin" ]; then
+    # Termux Environment
+    ln -sf "$WATARI_BIN/watari" "$PREFIX/bin/watari"
+    ln -sf "$WATARI_BIN/watari-init" "$PREFIX/bin/watari-init"
+    ln -sf "$WATARI_BIN/watari-build" "$PREFIX/bin/watari-build"
+else
+    # Standard Linux / PRoot Environment
+    $SUDO ln -sf "$WATARI_BIN/watari" /usr/local/bin/watari >/dev/null 2>&1 || true
+    $SUDO ln -sf "$WATARI_BIN/watari-init" /usr/local/bin/watari-init >/dev/null 2>&1 || true
+    $SUDO ln -sf "$WATARI_BIN/watari-build" /usr/local/bin/watari-build >/dev/null 2>&1 || true
+fi
 
 echo -e "${GREEN}======================================================================${RESET}"
 echo -e "${GREEN}                 [✔] WATARI PRO FORGE INSTALLED                       ${RESET}"
