@@ -117,6 +117,16 @@ yes | $CMDLINE_TOOLS/sdkmanager --licenses > /dev/null 2>&1
 set -e
 $CMDLINE_TOOLS/sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
+# --- AAPT2 ARM64 CORRECTION PATCH ---
+echo -e "${YELLOW}[*] Step 5.5: Installing Native ARM64 AAPT2 Binary...${RESET}"
+AAPT2_TEMP="/tmp/watari_aapt2"
+mkdir -p "$AAPT2_TEMP"
+wget -q -O "$AAPT2_TEMP/tools.zip" https://github.com/lzhiyong/android-sdk-tools/releases/download/35.0.2/android-sdk-tools-static-aarch64.zip
+unzip -q "$AAPT2_TEMP/tools.zip" -d "$AAPT2_TEMP"
+find "$AAPT2_TEMP" -type f -name "aapt2" -exec cp {} "$WATARI_BIN/aapt2" \;
+chmod +x "$WATARI_BIN/aapt2"
+rm -rf "$AAPT2_TEMP"
+
 # 6. Generate Watari CLI Tools
 echo -e "${YELLOW}[*] Step 6: Generating Watari Executables...${RESET}"
 
@@ -157,11 +167,12 @@ cat << INNER_EOF > local.properties
 sdk.dir=$ANDROID_HOME
 INNER_EOF
 
-cat << 'INNER_EOF' > gradle.properties
+cat << INNER_EOF > gradle.properties
 android.useAndroidX=true
 android.enableJetifier=true
 android.suppressUnsupportedCompileSdk=34
 org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+android.aapt2FromMavenOverride=$WATARI_BIN/aapt2
 INNER_EOF
 
 cat << 'INNER_EOF' > settings.gradle.kts
