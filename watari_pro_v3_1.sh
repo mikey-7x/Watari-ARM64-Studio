@@ -147,6 +147,13 @@ EOF
 cat << 'EOF' > "$WATARI_BIN/watari-init"
 #!/bin/bash
 set -e
+
+# --- SHELL IMMUNITY FIX: Hardcode paths internally ---
+export WATARI_HOME="$HOME/.watari_forge"
+export ANDROID_HOME="$WATARI_HOME/android_sdk"
+export WATARI_BIN="$WATARI_HOME/bin"
+export GRADLE_BIN="$WATARI_HOME/gradle/latest/bin/gradle"
+
 if [ -z "$1" ]; then
     echo -e "\e[1;31mUsage: watari-init <ProjectName>\e[0m"
     exit 1
@@ -172,7 +179,7 @@ android.useAndroidX=true
 android.enableJetifier=true
 android.suppressUnsupportedCompileSdk=34
 org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
-android.aapt2FromMavenOverride=$HOME/.watari_forge/bin/aapt2
+android.aapt2FromMavenOverride=$WATARI_BIN/aapt2
 INNER_EOF
 
 cat << 'INNER_EOF' > settings.gradle.kts
@@ -268,7 +275,7 @@ cat << 'INNER_EOF' > app/src/main/res/layout/activity_main.xml
 INNER_EOF
 
 echo -e "\e[1;33m[*] Initializing Local Gradle Wrapper...\e[0m"
-gradle wrapper --gradle-version 8.0 > /dev/null 2>&1 || true
+"$GRADLE_BIN" wrapper --gradle-version 8.7 > /dev/null 2>&1 || true
 
 echo -e "\e[1;32m[✔] Workspace '$PROJECT_NAME' forged and ready!\e[0m"
 echo -e "\e[1;36m    -> cd $PROJECT_NAME\e[0m"
