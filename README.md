@@ -474,4 +474,6 @@ If you are a business, enterprise, or individual wishing to utilize Watari-ARM64
 
 To negotiate a commercial license, please reach out directly to **@mikey-7x** by opening a dedicated issue or discussion thread in this repository.
 
+Please reach out directly to: **chauhanyogesh9512@gmail.com**
+
 ---
