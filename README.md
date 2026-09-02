@@ -26,7 +26,7 @@ source ~/.bashrc
 ```
 --- 
 
-##⚡ [2] Watari PRO Engine (Kotlin/Gradle Multiplatform)
+## ⚡ [2] Watari PRO Engine (Kotlin/Gradle Multiplatform)
 
 Watari PRO is the ultimate command-line compilation engine. It strips away the
 heavy GUI overhead of Android Studio while retaining the full power of the
