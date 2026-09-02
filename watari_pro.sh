@@ -27,12 +27,15 @@ fi
 
 # Universal Dependency Installation
 if [ -n "$PREFIX" ] && [ -x "$PREFIX/bin/pkg" ]; then
-    pkg update -y && pkg install -y openjdk-17 wget curl unzip zip git tree
+    # Termux specific: Ignore mirror sync errors gracefully
+    pkg update -y || true
+    pkg install -y openjdk-17 wget curl unzip zip git tree
 else
     SUDO=""
     [ "$(id -u)" -ne 0 ] && command -v sudo >/dev/null 2>&1 && SUDO="sudo"
     if command -v apt-get >/dev/null 2>&1; then
-        $SUDO apt-get update -y && $SUDO apt-get install -y openjdk-17-jdk wget curl unzip zip git tree
+        $SUDO apt-get update -y || true
+        $SUDO apt-get install -y openjdk-17-jdk wget curl unzip zip git tree
     elif command -v pacman >/dev/null 2>&1; then
         $SUDO pacman -Sy --noconfirm jre17-openjdk jdk17-openjdk wget curl unzip zip git tree
     elif command -v dnf >/dev/null 2>&1; then
