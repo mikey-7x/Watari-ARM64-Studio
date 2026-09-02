@@ -67,7 +67,7 @@ Copyright © 2024 Mikey (@mikey-7x). All Rights Reserved.
 
 This software, including all scripts, build architectures, and custom CLI
 compilation engines within this repository, is the proprietary intellectual
-property of Mikey (mikey-7x).
+property of mikey-7x.
 
 By accessing, downloading, or using this software, you legally agree to the
 following strict terms:
@@ -76,7 +76,7 @@ following strict terms:
     personal development, educational learning, and internal non-profit
     projects.
   - ✅ Required (Attribution): Any public showcase or non-commercial
-    redistribution must clearly credit Mikey (mikey-7x) and link back to this
+    redistribution must clearly credit mikey-7x and link back to this
     repository.
   - ❌ STRICTLY PROHIBITED (NO COMMERCIAL USE): You may NOT use this software,
     its source code, or its compiled binaries for any commercial purpose,
