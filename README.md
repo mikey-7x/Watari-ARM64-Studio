@@ -23,6 +23,7 @@ wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/m
 chmod +x watari.sh
 ./watari.sh
 source ~/.bashrc
+```
 
 ⚡ [2] Watari PRO Engine (Kotlin/Gradle Multiplatform)
 
@@ -40,11 +41,12 @@ official Android Gradle Plugin (AGP) and Kotlin.
     official Google Play Store distribution.
 
 📦 1-Step Installation
-
+```
 wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari_pro.sh
 chmod +x watari_pro.sh
 ./watari_pro.sh
 source ~/.bashrc
+```
 
 🛠️ The Watari PRO Command Suite
 
@@ -103,6 +105,7 @@ Ensure you are logged in as `root` or a user with `sudo` privileges.
 wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari_pro.sh
 chmod +x watari_pro.sh
 ./watari_pro.sh
+```
 
 # 2. Reload environment
 source ~/.bashrc
