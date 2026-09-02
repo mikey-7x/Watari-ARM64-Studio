@@ -40,6 +40,16 @@ else
     fi
 fi
 
+# Fix for Termux and Linux JAVA_HOME detection
+echo -e "${YELLOW}[*] Configuring Java Environment...${RESET}"
+hash -r
+if [ -n "$PREFIX" ] && [ -d "$PREFIX/lib/jvm/java-17-openjdk" ]; then
+    export JAVA_HOME="$PREFIX/lib/jvm/java-17-openjdk"
+else
+    export JAVA_HOME="$(dirname $(dirname $(readlink -f $(command -v java))))"
+fi
+export PATH="$JAVA_HOME/bin:$PATH"
+
 export WATARI_HOME="$HOME/.watari_forge"
 export ANDROID_HOME="$WATARI_HOME/android_sdk"
 export CMDLINE_TOOLS="$ANDROID_HOME/cmdline-tools/latest/bin"
@@ -227,12 +237,13 @@ EOF
 
 chmod +x "$WATARI_BIN/watari" "$WATARI_BIN/watari-init" "$WATARI_BIN/watari-build"
 
+# Safely inject paths into bashrc/zshrc
 for rc_file in "$HOME/.bashrc" "$HOME/.zshrc"; do
-    if [ -f "$rc_file" ] || [ "$rc_file" == "$HOME/.bashrc" ]; then
-        if ! grep -q "watari_forge/bin" "$rc_file"; then
-            echo "export ANDROID_HOME=\"$ANDROID_HOME\"" >> "$rc_file"
-            echo 'export PATH="$ANDROID_HOME/platform-tools:$HOME/.watari_forge/gradle/latest/bin:$HOME/.watari_forge/bin:$PATH"' >> "$rc_file"
-        fi
+    touch "$rc_file" # Creates the file if it doesn't exist
+    if ! grep -q "watari_forge/bin" "$rc_file"; then
+        echo "export JAVA_HOME=\"$JAVA_HOME\"" >> "$rc_file"
+        echo "export ANDROID_HOME=\"$ANDROID_HOME\"" >> "$rc_file"
+        echo 'export PATH="$ANDROID_HOME/platform-tools:$HOME/.watari_forge/gradle/latest/bin:$HOME/.watari_forge/bin:$PATH"' >> "$rc_file"
     fi
 done
 
