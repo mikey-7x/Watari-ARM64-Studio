@@ -39,15 +39,18 @@ echo -e "${YELLOW}[*] Detecting Package Manager and installing dependencies...${
 if command -v pacman >/dev/null 2>&1; then
     $SUDO pacman -Sy --noconfirm jdk17-openjdk wget curl unzip zip tar xz tree
 elif [ -f "/etc/os-release" ] && grep -qi "ubuntu\|debian" /etc/os-release; then
-    $SUDO apt-get update -y && $SUDO apt-get install -y openjdk-17-jdk wget curl unzip zip tar xz-utils tree
+    $SUDO apt-get update -y || true
+    $SUDO apt-get install -y openjdk-17-jdk wget curl unzip zip tar xz-utils tree
 elif command -v dnf >/dev/null 2>&1; then
     $SUDO dnf install -y java-17-openjdk-devel wget curl unzip zip tar xz tree
 elif command -v zypper >/dev/null 2>&1; then
     $SUDO zypper install -y -n java-17-openjdk-devel wget curl unzip zip tar xz tree
 elif command -v apk >/dev/null 2>&1; then
     $SUDO apk add --no-cache openjdk17 wget curl unzip zip tar xz tree
-elif command -v pkg >/dev/null 2>&1 && [ "$(id -u)" -ne 0 ]; then
-    pkg update -y && pkg install -y openjdk-17 wget curl unzip zip tar xz-utils tree
+elif command -v pkg >/dev/null 2>&1 && [ -n "$PREFIX" ]; then
+    # Termux specific: Ignore mirror sync errors gracefully
+    pkg update -y || true
+    pkg install -y openjdk-17 wget curl unzip zip tar xz-utils tree
 else
     echo -e "${RED}[!] Unsupported Package Manager. Install Java 17 manually.${RESET}"
     exit 1
