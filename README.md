@@ -17,7 +17,7 @@ Watari is a suite of highly advanced, self-contained compilation environments de
 * **Play Store Ready:** Automatically generates cryptographic Release Keystores.
 * **Universal Linux Deployment:** Dynamically detects your environment (`pacman`, `apt`, `dnf`, `zypper`, `apk`, `pkg`) and installs exact dependencies.
 
-### 📦 1-Step Installation
+📦 1-Step Installation
 ```bash
 wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari.sh
 chmod +x watari.sh
@@ -25,7 +25,7 @@ chmod +x watari.sh
 source ~/.bashrc
 ```
 
-⚡ [2] Watari PRO Engine (Kotlin/Gradle Multiplatform)
+##⚡ [2] Watari PRO Engine (Kotlin/Gradle Multiplatform)
 
 Watari PRO is the ultimate command-line compilation engine. It strips away the
 heavy GUI overhead of Android Studio while retaining the full power of the
@@ -92,32 +92,36 @@ Contact for Commercial Licensing: chauhanyogesh9512@gmail.com
 
 ---
 
-### 🧪 4. Arch Linux (Termux PRoot) Testing Instructions
+🧪 4. Arch Linux (Termux PRoot) Testing Instructions
 
 To test these scripts on your Android phone running Arch Linux via Termux PRoot:
 
-**Step 1: Open your Arch Linux PRoot environment.**
+1. Open your Arch Linux PRoot environment.
 Ensure you are logged in as `root` or a user with `sudo` privileges.
 
-**Step 2: Test Watari PRO Engine**
+2. Test Watari PRO Engine
 ```bash
 # 1. Download and run the installer
 wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari_pro.sh
 chmod +x watari_pro.sh
 ./watari_pro.sh
 ```
-
-# 2. Reload environment
+3. Reload environment
+```
 source ~/.bashrc
-
-# 3. Scaffold a test project
+```
+4. Scaffold a test project
+```
 watari-init ArchTestApp
 cd ArchTestApp
-
-# 4. Build a Play Store Ready Release APK
+```
+5. Build a Play Store Ready Release APK
+```
 watari-build --release
-
-# 5. Verify the output
+```
+6. Verify the output
+```
 ls -l build/
-# You should see your signed release APK ready for the Play Store!
+```
+You should see your signed release APK ready for the Play Store!
 
