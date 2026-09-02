@@ -24,6 +24,7 @@ chmod +x watari.sh
 ./watari.sh
 source ~/.bashrc
 ```
+--- 
 
 ##⚡ [2] Watari PRO Engine (Kotlin/Gradle Multiplatform)
 
@@ -58,6 +59,8 @@ source ~/.bashrc
 | `watari-build --release` | Compiles and cryptographically signs a Release APK.     |
 | `watari-build --desktop` | Compiles a cross-platform Desktop application.          |
 
+---
+
 ⚖️ WATARI PROPRIETARY NON-COMMERCIAL LICENSE
 
 Copyright © 2024 Mikey (@mikey-7x). All Rights Reserved.
@@ -80,6 +83,7 @@ following strict terms:
     monetary gain, or profit-generating activity. You may not sell the software,
     integrate it into a commercial product, or offer its capabilities as a paid
     service.
+---
 
 💼 Commercial Licensing & Permissions
 
