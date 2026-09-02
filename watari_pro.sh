@@ -80,8 +80,8 @@ yes | $CMDLINE_TOOLS/sdkmanager --licenses > /dev/null 2>&1
 set -e
 $CMDLINE_TOOLS/sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
-# AAPT2 ARM64 Patch
-AAPT2_TEMP="/tmp/watari_aapt2"
+# AAPT2 ARM64 Patch (Fixed for Termux compatibility)
+AAPT2_TEMP="$WATARI_HOME/tmp_aapt2"
 mkdir -p "$AAPT2_TEMP"
 wget -q -O "$AAPT2_TEMP/tools.zip" https://github.com/lzhiyong/android-sdk-tools/releases/download/35.0.2/android-sdk-tools-static-aarch64.zip
 unzip -q "$AAPT2_TEMP/tools.zip" -d "$AAPT2_TEMP"
