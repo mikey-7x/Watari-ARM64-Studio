@@ -67,12 +67,11 @@ echo -e "${BLUE}[+] Unpacking the Forge into your environment...${RESET}"
 rm -rf "$HOME/.watari_forge"
 tar -xf "$PAYLOAD_FILE" -C "$HOME/"
 
-# 6. Inject Path
+# 6. Inject Path Safely
 for rc_file in "$HOME/.bashrc" "$HOME/.zshrc"; do
-    if [ -f "$rc_file" ] || [ "$rc_file" == "$HOME/.bashrc" ]; then
-        if ! grep -q "watari_forge/bin" "$rc_file"; then
-            echo 'export PATH="$HOME/.watari_forge/bin:$PATH"' >> "$rc_file"
-        fi
+    touch "$rc_file" # Creates the file if it doesn't exist
+    if ! grep -q "watari_forge/bin" "$rc_file"; then
+        echo 'export PATH="$HOME/.watari_forge/bin:$PATH"' >> "$rc_file"
     fi
 done
 
