@@ -19,9 +19,9 @@ Watari is a suite of highly advanced, self-contained compilation environments de
 
 📦 1-Step Installation
 ```bash
-wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari.sh
-chmod +x watari.sh
-./watari.sh
+wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/install_watari
+chmod +x install_watari
+./install_watari
 source ~/.bashrc
 ```
 --- 
@@ -43,9 +43,9 @@ official Android Gradle Plugin (AGP) and Kotlin.
 
 📦 1-Step Installation
 ```
-wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/watari_pro.sh
-chmod +x watari_pro.sh
-./watari_pro.sh
+wget https://raw.githubusercontent.com/mikey-7x/Watari-ARM64-Studio/refs/heads/main/install_watari_pro
+chmod +x install_watari_pro
+./install_watari_pro
 source ~/.bashrc
 ```
 
